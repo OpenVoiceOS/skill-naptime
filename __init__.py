@@ -12,18 +12,19 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from adapt.intent import IntentBuilder
-
-from mycroft import MycroftSkill, intent_handler
-from mycroft.messagebus.message import Message
-from mycroft.audio import wait_while_speaking
-from mycroft.configuration.config import Configuration
-
 import time
 
+from adapt.intent import IntentBuilder
+from mycroft import intent_handler
+from mycroft.audio import wait_while_speaking
+from mycroft.configuration.config import Configuration
+from mycroft.messagebus.message import Message
+from ovos_workshop.skills import OVOSSkill
 
-class NapTimeSkill(MycroftSkill):
+
+class NapTimeSkill(OVOSSkill):
     """Skill to handle mycroft speech client listener sleeping."""
+
     def initialize(self):
         self.started_by_skill = False
         self.sleeping = False
@@ -31,6 +32,34 @@ class NapTimeSkill(MycroftSkill):
         self.add_event('mycroft.awoken', self.handle_awoken)
         self.wake_word = Configuration.get()['listener']['wake_word']
         self.disabled_confirm_listening = False
+
+    # TODO notifications api not yet merged
+    # merge this into ovos_workshop
+    def show_notification(self, content, action=None,
+                          noticetype="transient"):
+        """Display a Notification on homepage in the GUI.
+        Arguments:
+            content (str): Main text content of a notification, Limited
+                          to two visual lines.
+            action (str): Callback to any event registered by the skill
+                         to perform a certain action when notification is
+                         clicked.
+            noticetype (str):
+                transient: 'Default' displays a notification with a timeout.
+                sticky: displays a notification that sticks to the screen.
+        """
+        self.bus.emit(Message("homescreen.notification.set",
+                              data={
+                                  "sender": self.skill_id,
+                                  "text": content,
+                                  "action": action,
+                                  "type": noticetype
+                              }))
+
+    def handle_speak(self, message):
+        if self.sleeping:
+            utt = message.data["utterance"]
+            self.show_notification(utt)
 
     @intent_handler(IntentBuilder("NapTimeIntent").require("SleepCommand"))
     def handle_go_to_sleep(self, message):
@@ -122,6 +151,7 @@ class NapTimeSkill(MycroftSkill):
         self.bus.emit(msg)
         self.disabled_confirm_listening = False
         self.log.info('Enabled chirp again')
+
 
 def create_skill():
     return NapTimeSkill()
