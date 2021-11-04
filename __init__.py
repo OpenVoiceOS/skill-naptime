@@ -30,13 +30,40 @@ class NapTimeSkill(OVOSSkill):
         self.sleeping = False
         self.old_brightness = 30
         self.add_event('mycroft.awoken', self.handle_awoken)
-        self.wake_word = Configuration.get()['listener']['wake_word']
         self.disabled_confirm_listening = False
+
+    @property
+    def wake_word(self):
+        default = Configuration.get().get('listener', {}).get('wake_word')
+        # with multiple wakewords we can't be 100% sure what the correct name is
+        # a device might have multiple names
+        # - if the wake_word is set in listener consider that the main wakeword
+        # - if the wake_word in listener config does not have a ww config ignore it
+        # - else use the first hotword that listens and is set to self.lang, assume config is ordered by priority
+        # - else use the first hotword that listens, assume config is ordered by priority
+
+        hotwords = Configuration.get().get('hotwords', {})
+        if default in hotwords:
+            return default
+
+        # gather hotwords that trigger listening
+        candidates = {}
+        for ww_name, ww_conf in hotwords.items():
+            if ww_conf.get("listen"):
+                candidates[ww_name] = ww_conf
+
+        if candidates:
+            # preference to main language
+            for ww_name, ww_conf in candidates.items():
+                if ww_conf.get("lang", "") == self.lang:
+                    return ww_name
+            # assume ordered by preference in config
+            return candidates[0]
+        return default
 
     # TODO notifications api not yet merged
     # merge this into ovos_workshop
-    def show_notification(self, content, action=None,
-                          noticetype="transient"):
+    def show_notification(self, content, action=None, noticetype="transient"):
         """Display a Notification on homepage in the GUI.
         Arguments:
             content (str): Main text content of a notification, Limited
@@ -68,22 +95,24 @@ class NapTimeSkill(OVOSSkill):
         If the user has been told about the waking up process five times
         already, it sends a shorter message.
         """
-        count = self.settings.get('Wake up count', 0)
-        count += 1
-        self.settings['Wake up count'] = count
-
-        if count <= 5:
-            self.speak_dialog('going.to.sleep', {'wake_word': self.wake_word})
+        if self.wake_word:
+            self.speak_dialog('going.to.sleep', {'wake_word': self.wake_word}, wait=True)
         else:
-            self.speak_dialog('going.to.sleep.short')
+            self.speak_dialog('going.to.sleep.short', wait=True)
 
         self.bus.emit(Message('recognizer_loop:sleep'))
         self.sleeping = True
         self.started_by_skill = True
-        wait_while_speaking()
-        time.sleep(2)
-        wait_while_speaking()
+        self.bus.emit(Message('mycroft.volume.mute',
+                              data={"speak_message": False}))
+        if self.config_core['confirm_listening']:
+            self.disable_confirm_listening()
+        self.mark1_sleep_animation()
 
+    def mark1_sleep_animation(self):
+        time.sleep(0.5)
+        wait_while_speaking()
+        # TODO move to mk1 plugim (?)
         # Dim and look downward to 'go to sleep'
         # TODO: Get current brightness from somewhere
         self.old_brightness = 30
@@ -91,12 +120,19 @@ class NapTimeSkill(OVOSSkill):
             self.enclosure.eyes_brightness(self.old_brightness - i * 2)
             time.sleep(0.15)
         self.enclosure.eyes_look("d")
-        platform = self.config_core.get("enclosure").get("platform", "unknown")
-        if platform != "unknown":
-            self.bus.emit(Message('mycroft.volume.mute',
-                                  data={"speak_message": False}))
-        elif self.config_core['confirm_listening']:
-            self.disable_confirm_listening()
+
+    def mark1_wake_up_animation(self):
+        """Mild animation to come out of sleep from voice command.
+
+        Pop open eyes and wait a sec.
+        """
+        # TODO move to mk1 plugim (?)
+        self.enclosure.eyes_reset()
+        time.sleep(1)
+        self.enclosure.eyes_blink('b')
+        time.sleep(1)
+        # brighten the rest of the way
+        self.enclosure.eyes_brightness(self.old_brightness)
 
     def handle_awoken(self, message):
         """Handler for the mycroft.awoken message
@@ -108,31 +144,15 @@ class NapTimeSkill(OVOSSkill):
 
         self.awaken()
         if started_by_skill:
-            self.wake_up_animation()
+            self.mark1_wake_up_animation()
             # Announce that the unit is awake
-            self.speak_dialog("i.am.awake")
-            wait_while_speaking()
-
-    def wake_up_animation(self):
-        """Mild animation to come out of sleep from voice command.
-
-        Pop open eyes and wait a sec.
-        """
-        self.enclosure.eyes_reset()
-        time.sleep(1)
-        self.enclosure.eyes_blink('b')
-        time.sleep(1)
-        # brighten the rest of the way
-        self.enclosure.eyes_brightness(self.old_brightness)
+            self.speak_dialog("i.am.awake", wait=True)
 
     def awaken(self):
-        platform = self.config_core.get("enclosure").get("platform", "unknown")
-        if platform != "unknown":
-            self.bus.emit(Message('mycroft.volume.unmute',
-                                  data={"speak_message": False}))
-        elif self.disabled_confirm_listening:
+        self.bus.emit(Message('mycroft.volume.unmute',
+                              data={"speak_message": False}))
+        if self.disabled_confirm_listening:
             self.enable_confirm_listening()
-
         self.sleeping = False
         self.started_by_skill = False
 
@@ -142,7 +162,7 @@ class NapTimeSkill(OVOSSkill):
                       )
         self.bus.emit(msg)
         self.disabled_confirm_listening = True
-        self.log.info('Disabled chirp')
+        self.log.info('Disabled listen sound')
 
     def enable_confirm_listening(self):
         msg = Message('configuration.patch',
@@ -150,7 +170,7 @@ class NapTimeSkill(OVOSSkill):
                       )
         self.bus.emit(msg)
         self.disabled_confirm_listening = False
-        self.log.info('Enabled chirp again')
+        self.log.info('Enabled listen sound')
 
 
 def create_skill():
