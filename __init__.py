@@ -32,6 +32,8 @@ class NapTimeSkill(OVOSSkill):
         self.add_event('mycroft.awoken', self.handle_awoken)
         self.add_event('mycroft.awoken', self.mark1_wake_up_animation)
         self.add_event('recognizer_loop:sleep', self.mark1_sleep_animation)
+        self.add_event('mycroft.awoken', self.display_waking_face)
+        self.add_event('recognizer_loop:sleep', self.display_sleep_face)
         self.disabled_confirm_listening = False
 
     @property
@@ -86,6 +88,20 @@ class NapTimeSkill(OVOSSkill):
         time.sleep(1)
         # brighten the rest of the way
         self.enclosure.eyes_brightness(self.old_brightness)
+
+    # GUI integration
+    def display_sleep_face(self) -> None:
+        """Display the sleeping face depending on the platform."""
+        self.gui.show_page("resting.qml", override_idle=True)
+
+    def display_waking_face(self) -> None:
+        """Display the waking face depending on the platform."""
+        self.gui.remove_page("resting.qml")
+        self.gui.show_page("awake.qml", override_idle=5)
+        # TODO Screen not reverting after the specified 5 seconds.
+        # The following 2 lines shouldn't be needed. Remove when fixed.
+        time.sleep(5)
+        self.gui.release()
 
     # TODO notifications api not yet merged
     # merge this into ovos_workshop
