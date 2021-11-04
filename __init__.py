@@ -30,6 +30,8 @@ class NapTimeSkill(OVOSSkill):
         self.sleeping = False
         self.old_brightness = 30
         self.add_event('mycroft.awoken', self.handle_awoken)
+        self.add_event('mycroft.awoken', self.mark1_wake_up_animation)
+        self.add_event('recognizer_loop:sleep', self.mark1_sleep_animation)
         self.disabled_confirm_listening = False
 
     @property
@@ -60,6 +62,30 @@ class NapTimeSkill(OVOSSkill):
             # assume ordered by preference in config
             return candidates[0]
         return default
+
+    # TODO move mark1 handlers to PHAL mk1 plugin
+    def mark1_sleep_animation(self, message=None):
+        time.sleep(0.5)
+        wait_while_speaking()
+        # Dim and look downward to 'go to sleep'
+        # TODO: Get current brightness from somewhere
+        self.old_brightness = 30
+        for i in range(0, (self.old_brightness - 10) // 2):
+            self.enclosure.eyes_brightness(self.old_brightness - i * 2)
+            time.sleep(0.15)
+        self.enclosure.eyes_look("d")
+
+    def mark1_wake_up_animation(self, message=None):
+        """Mild animation to come out of sleep from voice command.
+
+        Pop open eyes and wait a sec.
+        """
+        self.enclosure.eyes_reset()
+        time.sleep(1)
+        self.enclosure.eyes_blink('b')
+        time.sleep(1)
+        # brighten the rest of the way
+        self.enclosure.eyes_brightness(self.old_brightness)
 
     # TODO notifications api not yet merged
     # merge this into ovos_workshop
@@ -107,32 +133,6 @@ class NapTimeSkill(OVOSSkill):
                               data={"speak_message": False}))
         if self.config_core['confirm_listening']:
             self.disable_confirm_listening()
-        self.mark1_sleep_animation()
-
-    def mark1_sleep_animation(self):
-        time.sleep(0.5)
-        wait_while_speaking()
-        # TODO move to mk1 plugim (?)
-        # Dim and look downward to 'go to sleep'
-        # TODO: Get current brightness from somewhere
-        self.old_brightness = 30
-        for i in range(0, (self.old_brightness - 10) // 2):
-            self.enclosure.eyes_brightness(self.old_brightness - i * 2)
-            time.sleep(0.15)
-        self.enclosure.eyes_look("d")
-
-    def mark1_wake_up_animation(self):
-        """Mild animation to come out of sleep from voice command.
-
-        Pop open eyes and wait a sec.
-        """
-        # TODO move to mk1 plugim (?)
-        self.enclosure.eyes_reset()
-        time.sleep(1)
-        self.enclosure.eyes_blink('b')
-        time.sleep(1)
-        # brighten the rest of the way
-        self.enclosure.eyes_brightness(self.old_brightness)
 
     def handle_awoken(self, message):
         """Handler for the mycroft.awoken message
@@ -141,10 +141,8 @@ class NapTimeSkill(OVOSSkill):
         this handles the user interaction upon wake up.
         """
         started_by_skill = self.started_by_skill
-
         self.awaken()
         if started_by_skill:
-            self.mark1_wake_up_animation()
             # Announce that the unit is awake
             self.speak_dialog("i.am.awake", wait=True)
 
