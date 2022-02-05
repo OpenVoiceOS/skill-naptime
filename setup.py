@@ -10,7 +10,7 @@ PLUGIN_ENTRY_POINT = 'mycroft-naptime.mycroftai=ovos_skill_naptime:NapTimeSkill'
 setup(
     # this is the package name that goes on pip
     name='ovos-skill-naptime',
-    version='0.0.1',
+    version='0.0.2',
     description='OVOS naptime skill plugin',
     url='https://github.com/OpenVoiceOS/skill-naptime',
     author='JarbasAi',
