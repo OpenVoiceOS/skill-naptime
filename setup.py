@@ -1,24 +1,66 @@
 #!/usr/bin/env python3
 from setuptools import setup
+import os
+
+
+BASEDIR = os.path.abspath(os.path.dirname(__file__))
+
+
+def get_version():
+    """ Find the version of the package"""
+    version = None
+    version_file = os.path.join(BASEDIR, 'version.py')
+    major, minor, build, alpha = (None, None, None, None)
+    with open(version_file) as f:
+        for line in f:
+            if 'VERSION_MAJOR' in line:
+                major = line.split('=')[1].strip()
+            elif 'VERSION_MINOR' in line:
+                minor = line.split('=')[1].strip()
+            elif 'VERSION_BUILD' in line:
+                build = line.split('=')[1].strip()
+            elif 'VERSION_ALPHA' in line:
+                alpha = line.split('=')[1].strip()
+
+            if ((major and minor and build and alpha) or
+                    '# END_VERSION_BLOCK' in line):
+                break
+    version = f"{major}.{minor}.{build}"
+    if alpha and int(alpha) > 0:
+        version += f"a{alpha}"
+    return version
+
+
+def required(requirements_file):
+    """ Read requirements file and remove comments and empty lines. """
+    with open(os.path.join(BASEDIR, requirements_file), 'r') as f:
+        requirements = f.read().splitlines()
+        if 'MYCROFT_LOOSE_REQUIREMENTS' in os.environ:
+            print('USING LOOSE REQUIREMENTS!')
+            requirements = [r.replace('==', '>=').replace('~=', '>=') for r in requirements]
+        return [pkg for pkg in requirements
+                if pkg.strip() and not pkg.startswith("#")]
+
+# NOTE: if you want compatibility with mycroft-core you CAN NOT move __init__.py
+# skills installed from source are git cloned and depend on a rigid structure
 
 # skill_id=package_name:SkillClass
-PLUGIN_ENTRY_POINT = 'mycroft-naptime.mycroftai=ovos_skill_naptime:NapTimeSkill'
-# in this case the skill_id is defined to purposefully replace the mycroft version of the skill,
-# or rather to be replaced by it in case it is present. all skill directories take precedence over plugin skills
+PLUGIN_ENTRY_POINT = 'ovos-skill-naptime.OpenVoiceOS=ovos_skill_naptime:NapTimeSkill'
 
 
 setup(
     # this is the package name that goes on pip
     name='ovos-skill-naptime',
-    version='0.0.2',
+    version=get_version(),
     description='OVOS naptime skill plugin',
     url='https://github.com/OpenVoiceOS/skill-naptime',
     author='JarbasAi',
     author_email='jarbasai@mailfence.com',
     license='Apache-2.0',
     package_dir={"ovos_skill_naptime": ""},
-    package_data={'ovos_skill_naptime': ['vocab/*', "dialog/*"]},
+    package_data={'ovos_skill_naptime': ["locale/*"]},
     packages=['ovos_skill_naptime'],
+    install_requires=required("requirements.txt"),
     include_package_data=True,
     keywords='ovos skill plugin',
     entry_points={'ovos.plugin.skill': PLUGIN_ENTRY_POINT}
