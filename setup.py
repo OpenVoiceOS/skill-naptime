@@ -60,6 +60,7 @@ setup(
     package_dir={"ovos_skill_naptime": ""},
     package_data={'ovos_skill_naptime': ["locale/*"]},
     packages=['ovos_skill_naptime'],
+    install_requires=required("requirements.txt"),
     include_package_data=True,
     keywords='ovos skill plugin',
     entry_points={'ovos.plugin.skill': PLUGIN_ENTRY_POINT}
