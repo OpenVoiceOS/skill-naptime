@@ -145,7 +145,7 @@ class NapTimeSkill(OVOSSkill):
         self.bus.emit(Message('recognizer_loop:sleep'))
         self.sleeping = True
         self.started_by_skill = True
-        self.bus.emit(Message('mycroft.naptime.mute',
+        self.bus.emit(Message('mycroft.volume.mute',
                               data={"speak_message": False}))
         if self.config_core['confirm_listening']:
             self.disable_confirm_listening()
@@ -163,7 +163,7 @@ class NapTimeSkill(OVOSSkill):
             self.speak_dialog("i.am.awake", wait=True)
 
     def awaken(self):
-        self.bus.emit(Message('mycroft.naptime.unmute',
+        self.bus.emit(Message('mycroft.volume.unmute',
                               data={"speak_message": False}))
         if self.disabled_confirm_listening:
             self.enable_confirm_listening()
