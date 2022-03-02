@@ -53,7 +53,7 @@ setup(
     name='ovos-skill-naptime',
     version=get_version(),
     description='OVOS naptime skill plugin',
-    url='https://github.com/OpenVoiceOS/skill-naptime',
+    url='https://github.com/OpenVoiceOS/ovos-skill-naptime',
     author='JarbasAi',
     author_email='jarbasai@mailfence.com',
     license='Apache-2.0',
