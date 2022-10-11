@@ -1,14 +1,22 @@
 # Changelog
 
-## [Unreleased](https://github.com/OpenVoiceOS/ovos-skill-naptime/tree/HEAD)
+## [Unreleased](https://github.com/OpenVoiceOS/skill-ovos-naptime/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-naptime/compare/5044eca5c1c0c1195f8c031aa4025967d75fdca0...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-naptime/compare/V0.0.2a1...HEAD)
 
 **Merged pull requests:**
 
-- feat/workflows [\#3](https://github.com/OpenVoiceOS/ovos-skill-naptime/pull/3) ([JarbasAl](https://github.com/JarbasAl))
-- gui + multiple wakeword support + more langs + code cleanup [\#2](https://github.com/OpenVoiceOS/ovos-skill-naptime/pull/2) ([JarbasAl](https://github.com/JarbasAl))
-- :tada: - packaging [\#1](https://github.com/OpenVoiceOS/ovos-skill-naptime/pull/1) ([JarbasAl](https://github.com/JarbasAl))
+- setup.py template [\#5](https://github.com/OpenVoiceOS/skill-ovos-naptime/pull/5) ([JarbasAl](https://github.com/JarbasAl))
+
+## [V0.0.2a1](https://github.com/OpenVoiceOS/skill-ovos-naptime/tree/V0.0.2a1) (2022-03-02)
+
+[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-naptime/compare/5044eca5c1c0c1195f8c031aa4025967d75fdca0...V0.0.2a1)
+
+**Merged pull requests:**
+
+- feat/workflows [\#3](https://github.com/OpenVoiceOS/skill-ovos-naptime/pull/3) ([JarbasAl](https://github.com/JarbasAl))
+- gui + multiple wakeword support + more langs + code cleanup [\#2](https://github.com/OpenVoiceOS/skill-ovos-naptime/pull/2) ([JarbasAl](https://github.com/JarbasAl))
+- :tada: - packaging [\#1](https://github.com/OpenVoiceOS/skill-ovos-naptime/pull/1) ([JarbasAl](https://github.com/JarbasAl))
 
 
 
