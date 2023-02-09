@@ -20,10 +20,24 @@ from mycroft.audio import wait_while_speaking
 from mycroft.configuration.config import Configuration
 from mycroft.messagebus.message import Message
 from ovos_workshop.skills import OVOSSkill
+from ovos_utils.process_utils import RuntimeRequirements
+from ovos_utils import classproperty
 
 
 class NapTimeSkill(OVOSSkill):
     """Skill to handle mycroft speech client listener sleeping."""
+
+    @classproperty
+    def runtime_requirements(self):
+        return RuntimeRequirements(internet_before_load=False,
+                                   network_before_load=False,
+                                   gui_before_load=False,
+                                   requires_internet=False,
+                                   requires_network=False,
+                                   requires_gui=False,
+                                   no_internet_fallback=True,
+                                   no_network_fallback=True,
+                                   no_gui_fallback=True)
 
     def initialize(self):
         self.started_by_skill = False
