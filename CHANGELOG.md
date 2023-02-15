@@ -6,6 +6,7 @@
 
 **Merged pull requests:**
 
+- Fix version automation [\#8](https://github.com/OpenVoiceOS/skill-ovos-naptime/pull/8) ([NeonDaniel](https://github.com/NeonDaniel))
 - feat/runtime\_requirements [\#7](https://github.com/OpenVoiceOS/skill-ovos-naptime/pull/7) ([JarbasAl](https://github.com/JarbasAl))
 - Feat/automations [\#6](https://github.com/OpenVoiceOS/skill-ovos-naptime/pull/6) ([JarbasAl](https://github.com/JarbasAl))
 
