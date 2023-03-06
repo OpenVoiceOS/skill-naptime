@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/skill-ovos-naptime/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-naptime/compare/V0.2.1...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-naptime/compare/V0.2.2a2...HEAD)
+
+**Merged pull requests:**
+
+- Remove duplicate translate actions [\#9](https://github.com/OpenVoiceOS/skill-ovos-naptime/pull/9) ([NeonDaniel](https://github.com/NeonDaniel))
+
+## [V0.2.2a2](https://github.com/OpenVoiceOS/skill-ovos-naptime/tree/V0.2.2a2) (2023-02-15)
+
+[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-naptime/compare/V0.2.1...V0.2.2a2)
 
 **Merged pull requests:**
 
