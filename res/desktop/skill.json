@@ -2,7 +2,7 @@
     "authorname": "OpenVoiceOS",
     "foldername": "ovos-skill-naptime",
     "url": "https://github.com/OpenVoiceOS/ovos-skill-naptime",
-    "branch": "dev",
+    "branch": "v0.2.2",
     "license": "apache-2.0",
     "tags": [
         "Configuration",
