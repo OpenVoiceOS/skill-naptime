@@ -1,5 +1,3 @@
-# Copyright 2017, Mycroft AI Inc.
-#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -14,14 +12,14 @@
 
 import time
 
-from adapt.intent import IntentBuilder
-from mycroft import intent_handler
-from mycroft.audio import wait_while_speaking
-from mycroft.configuration.config import Configuration
-from mycroft.messagebus.message import Message
-from ovos_workshop.skills import OVOSSkill
-from ovos_utils.process_utils import RuntimeRequirements
+from ovos_bus_client.message import Message
+from ovos_config import Configuration
 from ovos_utils import classproperty
+from ovos_utils.intents import IntentBuilder
+from ovos_utils.process_utils import RuntimeRequirements
+from ovos_utils.sound import wait_while_speaking
+from ovos_workshop.decorators import intent_handler
+from ovos_workshop.skills import OVOSSkill
 
 
 class NapTimeSkill(OVOSSkill):
@@ -200,6 +198,3 @@ class NapTimeSkill(OVOSSkill):
         self.disabled_confirm_listening = False
         self.log.info('Enabled listen sound')
 
-
-def create_skill():
-    return NapTimeSkill()
