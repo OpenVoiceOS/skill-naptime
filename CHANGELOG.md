@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/skill-ovos-naptime/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-naptime/compare/V0.2.2a4...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-naptime/compare/V0.2.2...HEAD)
+
+**Implemented enhancements:**
+
+- modernize [\#13](https://github.com/OpenVoiceOS/skill-ovos-naptime/pull/13) ([JarbasAl](https://github.com/JarbasAl))
+
+## [V0.2.2](https://github.com/OpenVoiceOS/skill-ovos-naptime/tree/V0.2.2) (2023-03-13)
+
+[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-naptime/compare/V0.2.2a4...V0.2.2)
 
 **Closed issues:**
 
