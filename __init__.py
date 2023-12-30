@@ -18,7 +18,6 @@ from ovos_bus_client.message import Message
 from ovos_config import Configuration
 from ovos_utils import classproperty
 from ovos_utils.process_utils import RuntimeRequirements
-from ovos_utils.sound import wait_while_speaking
 from ovos_workshop.decorators import intent_handler
 from ovos_workshop.skills import OVOSSkill
 
@@ -81,7 +80,6 @@ class NapTimeSkill(OVOSSkill):
     # TODO move mark1 handlers to PHAL mk1 plugin
     def mark1_sleep_animation(self, message=None):
         time.sleep(0.5)
-        wait_while_speaking()
         # Dim and look downward to 'go to sleep'
         # TODO: Get current brightness from somewhere
         self.old_brightness = 30
