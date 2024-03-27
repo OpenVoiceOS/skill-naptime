@@ -50,7 +50,7 @@ class NapTimeSkill(OVOSSkill):
 
     @property
     def wake_word(self):
-        default = Configuration.get().get('listener', {}).get('wake_word')
+        default = Configuration().get('listener', {}).get('wake_word')
         # with multiple wakewords we can't be 100% sure what the correct name is
         # a device might have multiple names
         # - if the wake_word is set in listener consider that the main wakeword
@@ -58,7 +58,7 @@ class NapTimeSkill(OVOSSkill):
         # - else use the first hotword that listens and is set to self.lang, assume config is ordered by priority
         # - else use the first hotword that listens, assume config is ordered by priority
 
-        hotwords = Configuration.get().get('hotwords', {})
+        hotwords = Configuration().get('hotwords', {})
         if default in hotwords:
             return default
 
