@@ -2,7 +2,20 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/skill-ovos-naptime/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-naptime/compare/V0.2.3a1...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-naptime/compare/V0.2.3a2...HEAD)
+
+**Fixed bugs:**
+
+- fix config [\#20](https://github.com/OpenVoiceOS/skill-ovos-naptime/pull/20) ([JarbasAl](https://github.com/JarbasAl))
+
+**Closed issues:**
+
+- "go to sleep" returns an error [\#19](https://github.com/OpenVoiceOS/skill-ovos-naptime/issues/19)
+- Installing skill through OSM: invalid MD5 URL [\#12](https://github.com/OpenVoiceOS/skill-ovos-naptime/issues/12)
+
+## [V0.2.3a2](https://github.com/OpenVoiceOS/skill-ovos-naptime/tree/V0.2.3a2) (2024-01-13)
+
+[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-naptime/compare/V0.2.3a1...V0.2.3a2)
 
 **Merged pull requests:**
 
