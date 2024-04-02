@@ -85,7 +85,7 @@ class NapTimeSkill(OVOSSkill):
         return default
 
     # TODO move mark1 handlers to PHAL mk1 plugin
-    def mark1_sleep_animation(self, _):
+    def mark1_sleep_animation(self, message: Message):
         time.sleep(0.5)
         # Dim and look downward to 'go to sleep'
         # TODO: Get current brightness from somewhere
