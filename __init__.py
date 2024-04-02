@@ -27,38 +27,45 @@ class NapTimeSkill(OVOSSkill):
 
     @classproperty
     def runtime_requirements(self):
-        return RuntimeRequirements(internet_before_load=False,
-                                   network_before_load=False,
-                                   gui_before_load=False,
-                                   requires_internet=False,
-                                   requires_network=False,
-                                   requires_gui=False,
-                                   no_internet_fallback=True,
-                                   no_network_fallback=True,
-                                   no_gui_fallback=True)
+        return RuntimeRequirements(
+            internet_before_load=False,
+            network_before_load=False,
+            gui_before_load=False,
+            requires_internet=False,
+            requires_network=False,
+            requires_gui=False,
+            no_internet_fallback=True,
+            no_network_fallback=True,
+            no_gui_fallback=True,
+        )
 
     def initialize(self):
         self.started_by_skill = False
         self.sleeping = False
         self.old_brightness = 30
-        self.add_event('mycroft.awoken', self.handle_awoken)
-        self.add_event('mycroft.awoken', self.mark1_wake_up_animation)
-        self.add_event('recognizer_loop:sleep', self.mark1_sleep_animation)
-        self.add_event('mycroft.awoken', self.display_waking_face)
-        self.add_event('recognizer_loop:sleep', self.display_sleep_face)
+        self.add_event("mycroft.awoken", self.handle_awoken)
+        self.add_event("mycroft.awoken", self.mark1_wake_up_animation)
+        self.add_event("recognizer_loop:sleep", self.mark1_sleep_animation)
+        self.add_event("mycroft.awoken", self.display_waking_face)
+        self.add_event("recognizer_loop:sleep", self.display_sleep_face)
         self.disabled_confirm_listening = False
 
     @property
+    def mute(self):
+        return self.settings.get("mute", False)
+
+    @property
     def wake_word(self):
-        default = Configuration().get('listener', {}).get('wake_word')
+        default = Configuration().get("listener", {}).get("wake_word")
         # with multiple wakewords we can't be 100% sure what the correct name is
         # a device might have multiple names
         # - if the wake_word is set in listener consider that the main wakeword
         # - if the wake_word in listener config does not have a ww config ignore it
-        # - else use the first hotword that listens and is set to self.lang, assume config is ordered by priority
+        # - else use the first hotword that listens and is set to self.lang, assume config is
+        #   ordered by priority
         # - else use the first hotword that listens, assume config is ordered by priority
 
-        hotwords = Configuration().get('hotwords', {})
+        hotwords = Configuration().get("hotwords", {})
         if default in hotwords:
             return default
 
@@ -78,7 +85,7 @@ class NapTimeSkill(OVOSSkill):
         return default
 
     # TODO move mark1 handlers to PHAL mk1 plugin
-    def mark1_sleep_animation(self, message=None):
+    def mark1_sleep_animation(self, _):
         time.sleep(0.5)
         # Dim and look downward to 'go to sleep'
         # TODO: Get current brightness from somewhere
@@ -88,14 +95,14 @@ class NapTimeSkill(OVOSSkill):
             time.sleep(0.15)
         self.enclosure.eyes_look("d")
 
-    def mark1_wake_up_animation(self, message=None):
+    def mark1_wake_up_animation(self, _):
         """Mild animation to come out of sleep from voice command.
 
         Pop open eyes and wait a sec.
         """
         self.enclosure.eyes_reset()
         time.sleep(1)
-        self.enclosure.eyes_blink('b')
+        self.enclosure.eyes_blink("b")
         time.sleep(1)
         # brighten the rest of the way
         self.enclosure.eyes_brightness(self.old_brightness)
@@ -128,40 +135,46 @@ class NapTimeSkill(OVOSSkill):
                 transient: 'Default' displays a notification with a timeout.
                 sticky: displays a notification that sticks to the screen.
         """
-        self.bus.emit(Message("homescreen.notification.set",
-                              data={
-                                  "sender": self.skill_id,
-                                  "text": content,
-                                  "action": action,
-                                  "type": noticetype
-                              }))
+        self.bus.emit(
+            Message(
+                "homescreen.notification.set",
+                data={
+                    "sender": self.skill_id,
+                    "text": content,
+                    "action": action,
+                    "type": noticetype,
+                },
+            )
+        )
 
-    def handle_speak(self, message):
+    def handle_speak(self, message: Message):
         if self.sleeping:
             utt = message.data["utterance"]
             self.show_notification(utt)
 
     @intent_handler("naptime.intent")
-    def handle_go_to_sleep(self, message):
+    def handle_go_to_sleep(self, _):
         """Sends a message to the speech client putting the listener to sleep.
 
         If the user has been told about the waking up process five times
         already, it sends a shorter message.
         """
         if self.wake_word:
-            self.speak_dialog('going.to.sleep', {'wake_word': self.wake_word}, wait=True)
+            self.speak_dialog(
+                "going.to.sleep", {"wake_word": self.wake_word}, wait=True
+            )
         else:
-            self.speak_dialog('going.to.sleep.short', wait=True)
+            self.speak_dialog("going.to.sleep.short", wait=True)
 
-        self.bus.emit(Message('recognizer_loop:sleep'))
+        self.bus.emit(Message("recognizer_loop:sleep"))
         self.sleeping = True
         self.started_by_skill = True
-        self.bus.emit(Message('mycroft.volume.mute',
-                              data={"speak_message": False}))
-        if self.config_core['confirm_listening']:
+        if self.mute:
+            self.bus.emit(Message("mycroft.volume.mute"))
+        if self.config_core["confirm_listening"]:
             self.disable_confirm_listening()
 
-    def handle_awoken(self, message):
+    def handle_awoken(self, _):
         """Handler for the mycroft.awoken message
 
         The message is sent when the listener hears 'Hey Mycroft, Wake Up',
@@ -174,25 +187,25 @@ class NapTimeSkill(OVOSSkill):
             self.speak_dialog("i.am.awake", wait=True)
 
     def awaken(self):
-        self.bus.emit(Message('mycroft.volume.unmute',
-                              data={"speak_message": False}))
+        self.bus.emit(Message("mycroft.volume.unmute"))
+        self.bus.emit(Message("recognizer_loop:record_end"))
         if self.disabled_confirm_listening:
             self.enable_confirm_listening()
         self.sleeping = False
         self.started_by_skill = False
 
     def disable_confirm_listening(self):
-        msg = Message('configuration.patch',
-                      data={'config': {'confirm_listening': False}}
-                      )
+        msg = Message(
+            "configuration.patch", data={"config": {"confirm_listening": False}}
+        )
         self.bus.emit(msg)
         self.disabled_confirm_listening = True
-        self.log.info('Disabled listen sound')
+        self.log.info("Disabled listen sound")
 
     def enable_confirm_listening(self):
-        msg = Message('configuration.patch',
-                      data={'config': {'confirm_listening': True}}
-                      )
+        msg = Message(
+            "configuration.patch", data={"config": {"confirm_listening": True}}
+        )
         self.bus.emit(msg)
         self.disabled_confirm_listening = False
-        self.log.info('Enabled listen sound')
+        self.log.info("Enabled listen sound")
