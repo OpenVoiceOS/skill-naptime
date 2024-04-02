@@ -95,7 +95,7 @@ class NapTimeSkill(OVOSSkill):
             time.sleep(0.15)
         self.enclosure.eyes_look("d")
 
-    def mark1_wake_up_animation(self, _):
+    def mark1_wake_up_animation(self, message: Message):
         """Mild animation to come out of sleep from voice command.
 
         Pop open eyes and wait a sec.
@@ -153,7 +153,7 @@ class NapTimeSkill(OVOSSkill):
             self.show_notification(utt)
 
     @intent_handler("naptime.intent")
-    def handle_go_to_sleep(self, _):
+    def handle_go_to_sleep(self, message: Message):
         """Sends a message to the speech client putting the listener to sleep.
 
         If the user has been told about the waking up process five times
@@ -174,7 +174,7 @@ class NapTimeSkill(OVOSSkill):
         if self.config_core["confirm_listening"]:
             self.disable_confirm_listening()
 
-    def handle_awoken(self, _):
+    def handle_awoken(self, message: Message):
         """Handler for the mycroft.awoken message
 
         The message is sent when the listener hears 'Hey Mycroft, Wake Up',
