@@ -187,7 +187,9 @@ class NapTimeSkill(OVOSSkill):
             self.speak_dialog("i.am.awake", wait=True)
 
     def awaken(self):
-        self.bus.emit(Message("mycroft.volume.unmute"))
+        if self.mute:
+            self.bus.emit(Message("mycroft.volume.unmute"))
+        # TODO: https://github.com/OpenVoiceOS/ovos-dinkum-listener/issues/103
         self.bus.emit(Message("recognizer_loop:record_end"))
         if self.disabled_confirm_listening:
             self.enable_confirm_listening()
