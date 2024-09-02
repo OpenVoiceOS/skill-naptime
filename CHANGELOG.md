@@ -2,7 +2,17 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/skill-ovos-naptime/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-naptime/compare/V0.2.3a3...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-naptime/compare/V0.2.3a4...HEAD)
+
+**Merged pull requests:**
+
+- italian intents [\#24](https://github.com/OpenVoiceOS/skill-ovos-naptime/pull/24) ([gitlocalize-app[bot]](https://github.com/apps/gitlocalize-app))
+- italian dialogs [\#23](https://github.com/OpenVoiceOS/skill-ovos-naptime/pull/23) ([gitlocalize-app[bot]](https://github.com/apps/gitlocalize-app))
+- pt-pt/translate [\#22](https://github.com/OpenVoiceOS/skill-ovos-naptime/pull/22) ([gitlocalize-app[bot]](https://github.com/apps/gitlocalize-app))
+
+## [V0.2.3a4](https://github.com/OpenVoiceOS/skill-ovos-naptime/tree/V0.2.3a4) (2024-04-13)
+
+[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-naptime/compare/V0.2.3a3...V0.2.3a4)
 
 **Implemented enhancements:**
 
