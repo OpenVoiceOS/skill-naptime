@@ -1,110 +1,15 @@
 # Changelog
 
-## [Unreleased](https://github.com/OpenVoiceOS/skill-ovos-naptime/tree/HEAD)
+## [0.3.1a2](https://github.com/OpenVoiceOS/skill-ovos-naptime/tree/0.3.1a2) (2024-10-15)
 
-[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-naptime/compare/V0.2.3a4...HEAD)
-
-**Merged pull requests:**
-
-- italian intents [\#24](https://github.com/OpenVoiceOS/skill-ovos-naptime/pull/24) ([gitlocalize-app[bot]](https://github.com/apps/gitlocalize-app))
-- italian dialogs [\#23](https://github.com/OpenVoiceOS/skill-ovos-naptime/pull/23) ([gitlocalize-app[bot]](https://github.com/apps/gitlocalize-app))
-- pt-pt/translate [\#22](https://github.com/OpenVoiceOS/skill-ovos-naptime/pull/22) ([gitlocalize-app[bot]](https://github.com/apps/gitlocalize-app))
-
-## [V0.2.3a4](https://github.com/OpenVoiceOS/skill-ovos-naptime/tree/V0.2.3a4) (2024-04-13)
-
-[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-naptime/compare/V0.2.3a3...V0.2.3a4)
-
-**Implemented enhancements:**
-
-- Few fixes and others... [\#21](https://github.com/OpenVoiceOS/skill-ovos-naptime/pull/21) ([goldyfruit](https://github.com/goldyfruit))
-
-**Closed issues:**
-
-- "go to sleep" returns an error [\#19](https://github.com/OpenVoiceOS/skill-ovos-naptime/issues/19)
-
-## [V0.2.3a3](https://github.com/OpenVoiceOS/skill-ovos-naptime/tree/V0.2.3a3) (2024-03-27)
-
-[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-naptime/compare/V0.2.3a2...V0.2.3a3)
-
-**Fixed bugs:**
-
-- fix config [\#20](https://github.com/OpenVoiceOS/skill-ovos-naptime/pull/20) ([JarbasAl](https://github.com/JarbasAl))
-
-**Closed issues:**
-
-- Installing skill through OSM: invalid MD5 URL [\#12](https://github.com/OpenVoiceOS/skill-ovos-naptime/issues/12)
-
-## [V0.2.3a2](https://github.com/OpenVoiceOS/skill-ovos-naptime/tree/V0.2.3a2) (2024-01-13)
-
-[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-naptime/compare/V0.2.3a1...V0.2.3a2)
+[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-naptime/compare/V0.2.3...0.3.1a2)
 
 **Merged pull requests:**
 
-- requirements/latest\_stable [\#18](https://github.com/OpenVoiceOS/skill-ovos-naptime/pull/18) ([JarbasAl](https://github.com/JarbasAl))
-
-## [V0.2.3a1](https://github.com/OpenVoiceOS/skill-ovos-naptime/tree/V0.2.3a1) (2023-06-16)
-
-[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-naptime/compare/V0.2.2...V0.2.3a1)
-
-**Implemented enhancements:**
-
-- modernize [\#13](https://github.com/OpenVoiceOS/skill-ovos-naptime/pull/13) ([JarbasAl](https://github.com/JarbasAl))
-
-## [V0.2.2](https://github.com/OpenVoiceOS/skill-ovos-naptime/tree/V0.2.2) (2023-03-13)
-
-[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-naptime/compare/V0.2.2a4...V0.2.2)
-
-**Closed issues:**
-
-- Rename of repo [\#4](https://github.com/OpenVoiceOS/skill-ovos-naptime/issues/4)
-
-**Merged pull requests:**
-
-- Update build tests to shared workflow and include manifest tests [\#11](https://github.com/OpenVoiceOS/skill-ovos-naptime/pull/11) ([NeonDaniel](https://github.com/NeonDaniel))
-
-## [V0.2.2a4](https://github.com/OpenVoiceOS/skill-ovos-naptime/tree/V0.2.2a4) (2023-03-09)
-
-[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-naptime/compare/V0.2.2a3...V0.2.2a4)
-
-**Merged pull requests:**
-
-- Update dependencies to stable versions [\#10](https://github.com/OpenVoiceOS/skill-ovos-naptime/pull/10) ([NeonDaniel](https://github.com/NeonDaniel))
-
-## [V0.2.2a3](https://github.com/OpenVoiceOS/skill-ovos-naptime/tree/V0.2.2a3) (2023-03-04)
-
-[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-naptime/compare/V0.2.2a2...V0.2.2a3)
-
-**Merged pull requests:**
-
-- Remove duplicate translate actions [\#9](https://github.com/OpenVoiceOS/skill-ovos-naptime/pull/9) ([NeonDaniel](https://github.com/NeonDaniel))
-
-## [V0.2.2a2](https://github.com/OpenVoiceOS/skill-ovos-naptime/tree/V0.2.2a2) (2023-02-15)
-
-[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-naptime/compare/V0.2.1...V0.2.2a2)
-
-**Merged pull requests:**
-
-- Fix version automation [\#8](https://github.com/OpenVoiceOS/skill-ovos-naptime/pull/8) ([NeonDaniel](https://github.com/NeonDaniel))
-- feat/runtime\_requirements [\#7](https://github.com/OpenVoiceOS/skill-ovos-naptime/pull/7) ([JarbasAl](https://github.com/JarbasAl))
-- Feat/automations [\#6](https://github.com/OpenVoiceOS/skill-ovos-naptime/pull/6) ([JarbasAl](https://github.com/JarbasAl))
-
-## [V0.2.1](https://github.com/OpenVoiceOS/skill-ovos-naptime/tree/V0.2.1) (2022-10-11)
-
-[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-naptime/compare/V0.0.2a1...V0.2.1)
-
-**Merged pull requests:**
-
-- setup.py template [\#5](https://github.com/OpenVoiceOS/skill-ovos-naptime/pull/5) ([JarbasAl](https://github.com/JarbasAl))
-
-## [V0.0.2a1](https://github.com/OpenVoiceOS/skill-ovos-naptime/tree/V0.0.2a1) (2022-03-02)
-
-[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-naptime/compare/5044eca5c1c0c1195f8c031aa4025967d75fdca0...V0.0.2a1)
-
-**Merged pull requests:**
-
-- feat/workflows [\#3](https://github.com/OpenVoiceOS/skill-ovos-naptime/pull/3) ([JarbasAl](https://github.com/JarbasAl))
-- gui + multiple wakeword support + more langs + code cleanup [\#2](https://github.com/OpenVoiceOS/skill-ovos-naptime/pull/2) ([JarbasAl](https://github.com/JarbasAl))
-- :tada: - packaging [\#1](https://github.com/OpenVoiceOS/skill-ovos-naptime/pull/1) ([JarbasAl](https://github.com/JarbasAl))
+- fix:long description [\#28](https://github.com/OpenVoiceOS/skill-ovos-naptime/pull/28) ([JarbasAl](https://github.com/JarbasAl))
+- fix:update\_requirements [\#27](https://github.com/OpenVoiceOS/skill-ovos-naptime/pull/27) ([JarbasAl](https://github.com/JarbasAl))
+- de-de/translate [\#26](https://github.com/OpenVoiceOS/skill-ovos-naptime/pull/26) ([gitlocalize-app[bot]](https://github.com/apps/gitlocalize-app))
+- Add Catalan translation [\#25](https://github.com/OpenVoiceOS/skill-ovos-naptime/pull/25) ([gitlocalize-app[bot]](https://github.com/apps/gitlocalize-app))
 
 
 
