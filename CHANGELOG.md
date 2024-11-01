@@ -1,8 +1,8 @@
 # Changelog
 
-## [0.3.2a1](https://github.com/OpenVoiceOS/skill-ovos-naptime/tree/0.3.2a1) (2024-11-01)
+## [0.3.3a1](https://github.com/OpenVoiceOS/skill-ovos-naptime/tree/0.3.3a1) (2024-11-01)
 
-[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-naptime/compare/0.3.2a1...0.3.2a1)
+[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-naptime/compare/0.3.2a1...0.3.3a1)
 
 **Merged pull requests:**
 
