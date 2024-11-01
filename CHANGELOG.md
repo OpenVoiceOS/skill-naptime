@@ -1,15 +1,21 @@
 # Changelog
 
-## [0.3.1a2](https://github.com/OpenVoiceOS/skill-ovos-naptime/tree/0.3.1a2) (2024-10-15)
+## [0.3.3a1](https://github.com/OpenVoiceOS/skill-ovos-naptime/tree/0.3.3a1) (2024-11-01)
 
-[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-naptime/compare/V0.2.3...0.3.1a2)
+[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-naptime/compare/0.3.2a1...0.3.3a1)
 
 **Merged pull requests:**
 
-- fix:long description [\#28](https://github.com/OpenVoiceOS/skill-ovos-naptime/pull/28) ([JarbasAl](https://github.com/JarbasAl))
-- fix:update\_requirements [\#27](https://github.com/OpenVoiceOS/skill-ovos-naptime/pull/27) ([JarbasAl](https://github.com/JarbasAl))
-- de-de/translate [\#26](https://github.com/OpenVoiceOS/skill-ovos-naptime/pull/26) ([gitlocalize-app[bot]](https://github.com/apps/gitlocalize-app))
-- Add Catalan translation [\#25](https://github.com/OpenVoiceOS/skill-ovos-naptime/pull/25) ([gitlocalize-app[bot]](https://github.com/apps/gitlocalize-app))
+- fix: allow workshop 2.0.0 [\#32](https://github.com/OpenVoiceOS/skill-ovos-naptime/pull/32) ([JarbasAl](https://github.com/JarbasAl))
+- added terms in Italian [\#30](https://github.com/OpenVoiceOS/skill-ovos-naptime/pull/30) ([gitlocalize-app[bot]](https://github.com/apps/gitlocalize-app))
+
+## [0.3.2a1](https://github.com/OpenVoiceOS/skill-ovos-naptime/tree/0.3.2a1) (2024-11-01)
+
+[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-naptime/compare/0.3.1...0.3.2a1)
+
+**Merged pull requests:**
+
+- accepted addition translation [\#31](https://github.com/OpenVoiceOS/skill-ovos-naptime/pull/31) ([gitlocalize-app[bot]](https://github.com/apps/gitlocalize-app))
 
 
 
