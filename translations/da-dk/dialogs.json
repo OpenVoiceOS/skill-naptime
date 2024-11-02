@@ -1,0 +1,14 @@
+{
+  "going.to.sleep.short.dialog": [
+    "Okay.",
+    null
+  ],
+  "i.am.awake.dialog": [
+    "Jeg er vågen"
+  ],
+  "going.to.sleep.dialog": [
+    "Jeg skal sove.  Sig '{wake_word}, ​​vågn op' for at få min opmærksomhed igen.",
+    null,
+    null
+  ]
+}
