@@ -182,7 +182,6 @@ class NapTimeSkill(OVOSSkill):
         """STT is disabled, but command can be sent via cli"""
         self.started_by_skill = True
         self.handle_awoken(message)
-        self.remove_context("sleeping_state")
 
     def handle_awoken(self, message: Message):
         """Handler for the mycroft.awoken message
