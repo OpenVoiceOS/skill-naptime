@@ -19,6 +19,7 @@ from ovos_config import Configuration
 from ovos_utils import classproperty
 from ovos_utils.process_utils import RuntimeRequirements
 from ovos_workshop.decorators import intent_handler
+from ovos_workshop.intents import IntentBuilder
 from ovos_workshop.skills import OVOSSkill
 
 
@@ -111,6 +112,7 @@ class NapTimeSkill(OVOSSkill):
     def display_sleep_face(self) -> None:
         """Display the sleeping face depending on the platform."""
         self.gui.show_page("resting", override_idle=True)
+        self.set_context("sleeping_state")
 
     def display_waking_face(self) -> None:
         """Display the waking face depending on the platform."""
@@ -151,6 +153,25 @@ class NapTimeSkill(OVOSSkill):
         if self.sleeping:
             utt = message.data["utterance"]
             self.show_notification(utt)
+
+    @intent_handler(IntentBuilder("WakeUp").require("wakeup").require("sleeping_state"))
+    def handle_go_to_sleep(self, message: Message):
+        """STT is disabled, but command can be sent via cli"""
+        if self.wake_word:
+            self.speak_dialog(
+                "going.to.sleep", {"wake_word": self.wake_word}, wait=True
+            )
+        else:
+            self.speak_dialog("going.to.sleep.short", wait=True)
+
+        self.bus.emit(Message("recognizer_loop:sleep"))
+        self.sleeping = True
+        self.started_by_skill = True
+        if self.mute:
+            self.bus.emit(Message("mycroft.volume.mute"))
+        if self.config_core["confirm_listening"]:
+            self.disable_confirm_listening()
+        self.set_context("sleeping_state")
 
     @intent_handler("naptime.intent")
     def handle_go_to_sleep(self, message: Message):
@@ -193,6 +214,7 @@ class NapTimeSkill(OVOSSkill):
             self.enable_confirm_listening()
         self.sleeping = False
         self.started_by_skill = False
+        self.remove_context("sleeping_state")
 
     def disable_confirm_listening(self):
         msg = Message(
