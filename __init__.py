@@ -154,25 +154,6 @@ class NapTimeSkill(OVOSSkill):
             utt = message.data["utterance"]
             self.show_notification(utt)
 
-    @intent_handler(IntentBuilder("WakeUp").require("wakeup").require("sleeping_state"))
-    def handle_go_to_sleep(self, message: Message):
-        """STT is disabled, but command can be sent via cli"""
-        if self.wake_word:
-            self.speak_dialog(
-                "going.to.sleep", {"wake_word": self.wake_word}, wait=True
-            )
-        else:
-            self.speak_dialog("going.to.sleep.short", wait=True)
-
-        self.bus.emit(Message("recognizer_loop:sleep"))
-        self.sleeping = True
-        self.started_by_skill = True
-        if self.mute:
-            self.bus.emit(Message("mycroft.volume.mute"))
-        if self.config_core["confirm_listening"]:
-            self.disable_confirm_listening()
-        self.set_context("sleeping_state")
-
     @intent_handler("naptime.intent")
     def handle_go_to_sleep(self, message: Message):
         """Sends a message to the speech client putting the listener to sleep.
@@ -194,6 +175,14 @@ class NapTimeSkill(OVOSSkill):
             self.bus.emit(Message("mycroft.volume.mute"))
         if self.config_core["confirm_listening"]:
             self.disable_confirm_listening()
+        self.set_context("sleeping_state")
+
+    @intent_handler(IntentBuilder("WakeUp").require("wakeup").require("sleeping_state"))
+    def handle_wakeup(self, message: Message):
+        """STT is disabled, but command can be sent via cli"""
+        self.started_by_skill = True
+        self.handle_awoken(message)
+        self.remove_context("sleeping_state")
 
     def handle_awoken(self, message: Message):
         """Handler for the mycroft.awoken message
