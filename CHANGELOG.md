@@ -1,21 +1,12 @@
 # Changelog
 
-## [0.3.4a2](https://github.com/OpenVoiceOS/skill-ovos-naptime/tree/0.3.4a2) (2024-11-15)
+## [0.3.5a1](https://github.com/OpenVoiceOS/skill-ovos-naptime/tree/0.3.5a1) (2024-11-15)
 
-[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-naptime/compare/0.3.4a1...0.3.4a2)
-
-**Merged pull requests:**
-
-- fix; skilljson [\#37](https://github.com/OpenVoiceOS/skill-ovos-naptime/pull/37) ([JarbasAl](https://github.com/JarbasAl))
-- da-dk/translate [\#34](https://github.com/OpenVoiceOS/skill-ovos-naptime/pull/34) ([gitlocalize-app[bot]](https://github.com/apps/gitlocalize-app))
-
-## [0.3.4a1](https://github.com/OpenVoiceOS/skill-ovos-naptime/tree/0.3.4a1) (2024-11-05)
-
-[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-naptime/compare/0.3.3...0.3.4a1)
+[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-naptime/compare/0.3.4...0.3.5a1)
 
 **Merged pull requests:**
 
-- fix: gui resources path [\#35](https://github.com/OpenVoiceOS/skill-ovos-naptime/pull/35) ([JarbasAl](https://github.com/JarbasAl))
+- fix: deprecation log spam [\#38](https://github.com/OpenVoiceOS/skill-ovos-naptime/pull/38) ([JarbasAl](https://github.com/JarbasAl))
 
 
 
