@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.3.7a1](https://github.com/OpenVoiceOS/skill-ovos-naptime/tree/0.3.7a1) (2024-11-15)
+
+[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-naptime/compare/0.3.6a1...0.3.7a1)
+
+**Merged pull requests:**
+
+- fix: emit bus message for listener [\#42](https://github.com/OpenVoiceOS/skill-ovos-naptime/pull/42) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [0.3.6a1](https://github.com/OpenVoiceOS/skill-ovos-naptime/tree/0.3.6a1) (2024-11-15)
 
 [Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-naptime/compare/0.3.5...0.3.6a1)
