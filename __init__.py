@@ -110,12 +110,12 @@ class NapTimeSkill(OVOSSkill):
     # GUI integration
     def display_sleep_face(self) -> None:
         """Display the sleeping face depending on the platform."""
-        self.gui.show_page("resting.qml", override_idle=True)
+        self.gui.show_page("resting", override_idle=True)
 
     def display_waking_face(self) -> None:
         """Display the waking face depending on the platform."""
-        self.gui.remove_page("resting.qml")
-        self.gui.show_page("awake.qml", override_idle=5)
+        self.gui.remove_page("resting")
+        self.gui.show_page("awake", override_idle=5)
         # TODO Screen not reverting after the specified 5 seconds.
         # The following 2 lines shouldn't be needed. Remove when fixed.
         time.sleep(5)
