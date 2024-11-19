@@ -1,20 +1,12 @@
 # Changelog
 
-## [0.3.7a1](https://github.com/OpenVoiceOS/skill-ovos-naptime/tree/0.3.7a1) (2024-11-15)
+## [0.3.8a1](https://github.com/OpenVoiceOS/skill-ovos-naptime/tree/0.3.8a1) (2024-11-19)
 
-[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-naptime/compare/0.3.6a1...0.3.7a1)
-
-**Merged pull requests:**
-
-- fix: emit bus message for listener [\#42](https://github.com/OpenVoiceOS/skill-ovos-naptime/pull/42) ([JarbasAl](https://github.com/JarbasAl))
-
-## [0.3.6a1](https://github.com/OpenVoiceOS/skill-ovos-naptime/tree/0.3.6a1) (2024-11-15)
-
-[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-naptime/compare/0.3.5...0.3.6a1)
+[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-naptime/compare/0.3.7...0.3.8a1)
 
 **Merged pull requests:**
 
-- missing "wake up" intent [\#39](https://github.com/OpenVoiceOS/skill-ovos-naptime/pull/39) ([JarbasAl](https://github.com/JarbasAl))
+- fix:requirements.txt [\#44](https://github.com/OpenVoiceOS/skill-ovos-naptime/pull/44) ([JarbasAl](https://github.com/JarbasAl))
 
 
 
