@@ -1,12 +1,14 @@
 # Changelog
 
-## [0.3.8a1](https://github.com/OpenVoiceOS/skill-ovos-naptime/tree/0.3.8a1) (2024-11-19)
+## [0.3.9a1](https://github.com/OpenVoiceOS/skill-ovos-naptime/tree/0.3.9a1) (2024-11-25)
 
-[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-naptime/compare/0.3.7...0.3.8a1)
+[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-naptime/compare/0.3.8...0.3.9a1)
 
 **Merged pull requests:**
 
-- fix:requirements.txt [\#44](https://github.com/OpenVoiceOS/skill-ovos-naptime/pull/44) ([JarbasAl](https://github.com/JarbasAl))
+- da-dk/translate [\#48](https://github.com/OpenVoiceOS/skill-ovos-naptime/pull/48) ([gitlocalize-app[bot]](https://github.com/apps/gitlocalize-app))
+- Add Catalan translation [\#47](https://github.com/OpenVoiceOS/skill-ovos-naptime/pull/47) ([gitlocalize-app[bot]](https://github.com/apps/gitlocalize-app))
+- Add Catalan translation [\#46](https://github.com/OpenVoiceOS/skill-ovos-naptime/pull/46) ([gitlocalize-app[bot]](https://github.com/apps/gitlocalize-app))
 
 
 
