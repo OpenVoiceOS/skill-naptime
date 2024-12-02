@@ -1,16 +1,14 @@
 {
     "going.to.sleep.short.dialog": [
-        "Bale.",
-        "Ados.",
-        "Lotara noa."
+        "Banoa lotara.",
+        "Okay."
     ],
     "i.am.awake.dialog": [
-        "Esna nago.",
-        "Esnatu naiz.",
-        "Martxan nago."
+        "Esna nago"
     ],
     "going.to.sleep.dialog": [
-        "Lotara noa. Esan '{wake_word}, esnatu' nire arreta berriro erakartzeko.",
-        "Orain egingo dut lo. Esan '{wake_word}, esnatu' ni berriro martxan jartzeko."
+        "Ados. Lotara noa.  Esnatzeko honako hau esan dezakezu: '{wake_word}.  esnatu'.",
+        "Lotara noa orain.  Esan '{wake_word}.  esnatu' ni aktibatzeko.",
+        "Lotara noa.  Esan '{wake_word}. esnatu' ni berriro erne egoteko."
     ]
 }
