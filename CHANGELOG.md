@@ -1,12 +1,12 @@
 # Changelog
 
-## [0.3.10a1](https://github.com/OpenVoiceOS/ovos-skill-naptime/tree/0.3.10a1) (2024-12-04)
+## [0.3.11a1](https://github.com/OpenVoiceOS/ovos-skill-naptime/tree/0.3.11a1) (2024-12-13)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-naptime/compare/0.3.9...0.3.10a1)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-naptime/compare/0.3.10...0.3.11a1)
 
 **Merged pull requests:**
 
-- de-de/translate [\#54](https://github.com/OpenVoiceOS/ovos-skill-naptime/pull/54) ([gitlocalize-app[bot]](https://github.com/apps/gitlocalize-app))
+- adjusting German translation from joergz2 [\#56](https://github.com/OpenVoiceOS/ovos-skill-naptime/pull/56) ([gitlocalize-app[bot]](https://github.com/apps/gitlocalize-app))
 
 
 
